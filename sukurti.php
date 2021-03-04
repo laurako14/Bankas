@@ -46,13 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Pavardė:
         <input type="text" name="pavarde" required><br>
         Sąskaitos Nr.:
-        <input type="text" name="saskaitosNr" required><br>
+        <input type="text" name="saskaitosNr" value='<?= $saskaita['saskaitosNr'] ?>' required readonly><br>
         Asmens kodas:
         <input type="number" name="asmensNr" required><br>
         <input class="button" type="submit" value="Sukurti">
-        <!-- <?php if (mb_strlen($_POST['asmensNr']) < 11) : ?>
-        Asmens kodą turi sudaryti 11 simbolių;<br>
-        <?php endif ?> -->
         <!-- <?php if (in_array($_POST['asmensNr'], $kodai)) : ?>
         Asmens kodas negali kartotis;<br>
         <?php endif ?> -->

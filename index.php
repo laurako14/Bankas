@@ -1,5 +1,5 @@
 <?php 
-require __DIR__.'/bootstrap.php';
+require 'bootstrap.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

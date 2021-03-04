@@ -31,7 +31,8 @@ function sukurti(array $saskaita) : void
 {
     $bankas = skaityti();
     $id = getNextId();
-    $saskaita = ['id' => $id, 'suma'=> 0, 'vardas' => $saskaita['vardas'], 'pavarde' => $saskaita['pavarde'], 'asmensNr' => $saskaita['asmensNr'], 'saskaitosNr' => $saskaita['saskaitosNr']];
+    $saskaitosNr = saskaitosGeneravimas();
+    $saskaita = ['id' => $id, 'suma'=> 0, 'vardas' => $saskaita['vardas'], 'pavarde' => $saskaita['pavarde'], 'asmensNr' => $saskaita['asmensNr'], 'saskaitosNr' => $saskaitosNr];
     $bankas[] = $saskaita;
     irasyti($bankas);
 }
@@ -88,7 +89,7 @@ function saskaitosGeneravimas() : string
     $saskaitosNr = json_decode($saskaitosNr, 1);
     $numeris = (int) $saskaitosNr['saskaitosNr'];
     $saskaitosNr['saskaitosNr'] = $numeris + 1;
-    $index = json_encode($index);
-    file_put_contents('indexes.json', $index);
-    return $id;
+    $saskaitosNr = json_encode($saskaitosNr);
+    file_put_contents('saskaitosNr.json', $saskaitosNr);
+    return $numeris;
 }
