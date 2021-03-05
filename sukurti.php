@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: http://localhost/Bankas/pagrindinis.php');
     die;
 }
+$saskaitosNr = saskaitosGeneravimas();
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Pavardė:
         <input type="text" name="pavarde" required><br>
         Sąskaitos Nr.:
-        <input type="text" name="saskaitosNr" value='<?= $saskaita['saskaitosNr'] ?>' required readonly><br>
+        <input type="text" name="saskaitosNr" value='<?= 'LT'.$saskaitosNr ?>' required readonly><br>
         Asmens kodas:
         <input type="number" name="asmensNr" required><br>
         <input class="button" type="submit" value="Sukurti">

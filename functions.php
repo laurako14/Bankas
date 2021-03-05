@@ -31,8 +31,7 @@ function sukurti(array $saskaita) : void
 {
     $bankas = skaityti();
     $id = getNextId();
-    $saskaitosNr = saskaitosGeneravimas();
-    $saskaita = ['id' => $id, 'suma'=> 0, 'vardas' => $saskaita['vardas'], 'pavarde' => $saskaita['pavarde'], 'asmensNr' => $saskaita['asmensNr'], 'saskaitosNr' => $saskaitosNr];
+    $saskaita = ['id' => $id, 'suma'=> 0, 'vardas' => $saskaita['vardas'], 'pavarde' => $saskaita['pavarde'], 'asmensNr' => $saskaita['asmensNr'], 'saskaitosNr' => $saskaita['saskaitosNr']];
     $bankas[] = $saskaita;
     irasyti($bankas);
 }
@@ -56,8 +55,12 @@ function istrinti(int $id) : void
     $bankas = skaityti();
     foreach($bankas as $key => $saskaita) {
         if ($saskaita['id'] == $id) {
+            if ($saskaita['suma'] > 0) {
+                return;
+            } else {
             unset($bankas[$key]);
-            irasyti($bankas);
+            irasyti($bankas); 
+            }
             return;
         }
     }
@@ -82,7 +85,7 @@ function getNextId() : int
 function saskaitosGeneravimas() : string 
 {
     if (!file_exists('saskaitosNr.json')) {// pirmas kartas
-        $saskaitosNr = json_encode(['saskaitosNr'=> LT4400000]);
+        $saskaitosNr = json_encode(['saskaitosNr'=> 4400000]);
         file_put_contents('saskaitosNr.json', $saskaitosNr);
     }
     $saskaitosNr = file_get_contents('saskaitosNr.json');
